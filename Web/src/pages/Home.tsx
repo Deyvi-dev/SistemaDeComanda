@@ -1,0 +1,11 @@
+import { Link } from 'react-router-dom';
+
+export function Home(){
+    return (
+        <>
+            <Link to={'/cozinha'}>
+                <a>Cozinha</a>
+            </Link>
+        </>
+    )
+}

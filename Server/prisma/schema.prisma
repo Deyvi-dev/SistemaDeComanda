@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Mesa {
+  id     Int @id @unique
+  mesa   Int
+  pratos Prato[] //array da tabela prato
+
+  @@map("mesas") // renomeando nome da tabela do banco de dados
+}
+
+model Prato {
+  id         Int @id @default(autoincrement())
+  name       String
+  desc       String
+  obs        String
+  state      String
+  data       DateTime @updatedAt
+  valor      Float
+
+  mesa Mesa? @relation(fields:[mesa_id], references: [id])
+  mesa_id    Int? //Chave estrangeira com id da mesa
+  @@map("pratos")
+}
