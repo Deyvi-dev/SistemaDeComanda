@@ -12,7 +12,7 @@ interface dados {
     obs:string;
 }
 
-export function Cozinha(){
+export function ApiTest(){
 
     const [dados,setDados] = useState<dados[]>([])
 
