@@ -26,7 +26,7 @@ export function Caixa(){
         <div>
             {dados.map(d => {
                 return (
-                    <>{d.name}</>
+                    <></>
                 )
             })}
             <CardCaixa/>

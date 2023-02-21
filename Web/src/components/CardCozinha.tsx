@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 interface propsCardCozinha{
     mesa : number;
     prato : string;
     desc : string;
     obs : string;
+    id : number;
 }
 
 export function CardCozinha(props:propsCardCozinha){
@@ -13,9 +15,11 @@ export function CardCozinha(props:propsCardCozinha){
 
     const click = name == ' ' ? " " : 'bg-red-500'
 
-    function submitPrato () {
+
+    async function submitPrato () {
+        const response = await axios.put(`http://localhost:3333/updateCozinha/${props.id}`)
         setName('Peido finalizado')
-        console.log(`Prato da mesa: ${props.mesa}, pronto para entrega, ${name}`)
+        console.log(props.id)
     }
 
     return(
