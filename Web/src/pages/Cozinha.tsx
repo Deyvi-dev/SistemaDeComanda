@@ -25,8 +25,6 @@ export function Cozinha(){
         carregarDados()
       }, []);
 
-      console.log(dados)
-
     return (
         <>  
             <Link to={'/'}>

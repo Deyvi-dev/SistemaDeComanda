@@ -19,7 +19,6 @@ export function CardCozinha(props:propsCardCozinha){
     async function submitPrato () {
         const response = await axios.put(`http://localhost:3333/updateCozinha/${props.id}`)
         setName('Peido finalizado')
-        console.log(props.id)
     }
 
     return(

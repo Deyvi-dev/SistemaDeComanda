@@ -1,5 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
+
+
+import { PopupCaixa } from './PopupCaixa';
 
 interface dados {
     id: number;
@@ -9,37 +13,38 @@ interface dados {
     obs:string;
 }
 
-export function CardCaixa(){
+interface propsCaixa{
+    mesa: number;
+}
 
-    const [dados,setDados] = useState<dados[]>([])
+export function CardCaixa(props:propsCaixa){
 
-    async function carregarDados() {
-        const response = await axios.get<dados[]>('http://localhost:3333/mesas');
-        setDados(response.data);
+    const [openPopup, setOpenPopup] = useState(false);
+
+    function openMesa(){
+        setOpenPopup(!openPopup)
     }
 
-    useEffect(() => {
-        carregarDados()
-      }, []);
-
-    console.log(dados)
 
     return(
-        <div className="w-80 bg-slate-500">
-            {dados.map(d => {
-                return(
-                    <div>
-                        {d.name}
-                    </div>
-                )
-            })}
-            <div>Mesa</div>
-            <div>
-                <h2>Pratos</h2>
-                <p>Nome do prato</p>
-                <p>Valor do prato</p>
+        <button onClick={openMesa}>
+            <div className="bg-gray-600 flex h-fit w-fit gap-2 pl-2  overflow-hidden rounded-r-lg">
+                <h1 className="text-white flex gap-2 text-xl text-center items-center justify-center py-2">
+                    MESA
+                    <p className="text-red-500">
+                    {props.mesa.toString()}
+                    </p>
+                </h1>
+
+                <div className="bg-green-400 w-7 flex justify-center items-center text-center">
+                    x
+                </div>
+
+                <Modal 
+                isOpen={openPopup == true}>
+                    <PopupCaixa mesa={props.mesa}/>
+                </Modal>
             </div>
-            <div>Valor total</div>
-        </div>
+        </button>
     )
 }
