@@ -26,7 +26,7 @@ export function Cozinha(){
       }, []);
 
     return (
-        <>  
+        <div className="bg-gray-500">  
             <Link to={'/'}>
                 <a>Home</a>
             </Link>
@@ -37,6 +37,6 @@ export function Cozinha(){
                     )
                 })}
             </div>
-        </>
+        </div>
     )
 }

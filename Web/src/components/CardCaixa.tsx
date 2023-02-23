@@ -1,9 +1,6 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import Modal from 'react-modal';
-
-
 import { PopupCaixa } from './PopupCaixa';
+import Model from 'react-modal'
+import { useState } from 'react';
 
 interface dados {
     id: number;
@@ -19,32 +16,41 @@ interface propsCaixa{
 
 export function CardCaixa(props:propsCaixa){
 
-    const [openPopup, setOpenPopup] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
 
-    function openMesa(){
-        setOpenPopup(!openPopup)
+    function abrirModel(){setIsOpen(true)}
+    function fecharModel(){setIsOpen(false)}
+
+    var mesaNumber = props.mesa.toString()
+
+    if(props.mesa < 10){
+        mesaNumber = ("0" + props.mesa)
     }
 
-
     return(
-        <button onClick={openMesa}>
-            <div className="bg-gray-600 flex h-fit w-fit gap-2 pl-2  overflow-hidden rounded-r-lg">
-                <h1 className="text-white flex gap-2 text-xl text-center items-center justify-center py-2">
-                    MESA
-                    <p className="text-red-500">
-                    {props.mesa.toString()}
-                    </p>
-                </h1>
-
-                <div className="bg-green-400 w-7 flex justify-center items-center text-center">
-                    x
+        <>
+            <button className="" onClick={abrirModel}>
+            {/* bg-gray-600 flex h-fit w-fit gap-2 pl-2  overflow-hidden px-2 */}
+                <div className="bg-gray-600 p-3 font-bold text-white">
+                {/* text-white flex gap-2 text-xl text-center items-center justify-center py-2 */}
+                    <h1 className="">
+                        MESA
+                        <p className="text-red-500">
+                        {mesaNumber}
+                        </p>
+                    </h1>
                 </div>
 
-                <Modal 
-                isOpen={openPopup == true}>
-                    <PopupCaixa mesa={props.mesa}/>
-                </Modal>
-            </div>
-        </button>
+            </button>
+            <Model
+            isOpen={isOpen}
+            onRequestClose={fecharModel}
+            >
+                <button onClick={fecharModel}>
+                    fechar
+                </button>
+                <PopupCaixa mesa={props.mesa} />
+            </Model>
+        </>
     )
 }

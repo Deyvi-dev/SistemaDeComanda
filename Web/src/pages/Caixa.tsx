@@ -77,7 +77,7 @@ export function Caixa(){
                     </p>
                 </div>
             </div>
-            <div className="bg-white flex-1 h-5/6 rounded-xl overflow-hidden flex flex-col gap-4 p-5">
+            <div className="bg-white flex-1 h-5/6 rounded-xl overflow-hidden flex flex-col flex-wrap p-4 gap-3">
                 {
                     mesas.map(d => {
                         return (

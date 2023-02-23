@@ -9,8 +9,8 @@ export function Home(){
 
             <Link 
                 className="bg-slate-500 b-2 w-20"
-                to={"/ApiTest"}>
-                    Teste Api
+                to={"/garçom"}>
+                    Garçom
             </Link>
 
             <Link to={'/caixa'}>
