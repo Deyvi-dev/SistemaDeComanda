@@ -1,6 +1,7 @@
 import { PopupCaixa } from './PopupCaixa';
 import Model from 'react-modal'
 import { useState } from 'react';
+import { SignOut } from 'phosphor-react';
 
 interface dados {
     id: number;
@@ -46,9 +47,18 @@ export function CardCaixa(props:propsCaixa){
             isOpen={isOpen}
             onRequestClose={fecharModel}
             >
-                <button onClick={fecharModel}>
-                    fechar
-                </button>
+                <div className="h-[10%] flex justify-center w-full items-center">
+                    <h1 className="font-bold text-xl">
+                        MESA {props.mesa}
+                    </h1>
+                    <div className="absolute w-full  flex justify-end">
+                        <button 
+                        className="flex w-fit font-bold items-center px-3 gap-2 hover:text-gray-600 active:text-black"
+                        onClick={fecharModel}>
+                            SAIR <SignOut size={20} />
+                        </button>
+                    </div>
+                </div>
                 <PopupCaixa mesa={props.mesa} />
             </Model>
         </>

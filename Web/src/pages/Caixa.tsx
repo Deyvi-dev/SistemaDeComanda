@@ -21,11 +21,11 @@ export function Caixa(){
 
     useEffect(() => {
         api
-            .get<dados[]>("/bar")
+            .get<dados[]>("/pedidos-no-bar")
             .then((response) => setBar(response.data));
 
         api
-            .get<dados[]>("/cozinha")
+            .get<dados[]>("/pedidos-na-cozinha")
             .then((response) => setCozinha(response.data));
 
         api
@@ -33,7 +33,7 @@ export function Caixa(){
             .then((response) => setPronto(response.data));
 
         api
-            .get<dados[]>("/caixa")
+            .get<dados[]>("/pedidos-no-caixa")
             .then((response) => setCaixa(response.data));
 
         api
