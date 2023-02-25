@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { WarningCircle } from 'phosphor-react';
 import CaixaPagamentoSolo from './CaixaPagamentoSolo';
-import { CardPagamentoSolo } from './CardPagamentoSolo';
 
 interface propsPopupCaixa{
     mesa: number

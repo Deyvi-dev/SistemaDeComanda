@@ -9,7 +9,7 @@ export function Home(){
 
             <Link 
                 className="bg-slate-500 b-2 w-20"
-                to={"/garçom"}>
+                to={"/garcom"}>
                     Garçom
             </Link>
 

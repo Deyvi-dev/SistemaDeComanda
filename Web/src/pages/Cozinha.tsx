@@ -30,7 +30,7 @@ export function Cozinha(){
             <Link to={'/'}>
                 <a>Home</a>
             </Link>
-            <div className="h-screen w-full flex gap-3 break-all flex-wrap justify-center">
+            <div className="h-screen w-full  flex gap-3 break-all flex-wrap justify-center py-5">
                 {dados.map(d => {
                     return(
                         <CardCozinha desc={d.desc} obs={d.obs} mesa={d.mesa_id} prato={d.name} id={d.id} key={d.id}/>
