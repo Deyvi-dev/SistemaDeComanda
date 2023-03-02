@@ -1,6 +1,7 @@
 import { WarningCircle, Check } from "phosphor-react";
 import { useState } from "react"
 import ReactModal from "react-modal";
+import api from "../services/Api";
 
 
 interface propsCard {
@@ -10,15 +11,19 @@ interface propsCard {
     id: number
 }
 
-export function CardGarcomPagamentoSolo(props: propsCard){
+export function CardGarcomEntregaPedido(props: propsCard){
 
     const [open, setOpen] = useState(false);
 
+    async function confirmarPedido () {
+        api.put(`/confirmandoPedido/${props.id}`)
+    }
+
     return(
         <div className="w-full flex flex-col items-center ">
-                    <div className="flex justify-between w-fit h-fit bg-slate-200 w-[90%] rounded-r-xl overflow-hidden">
+                    <div className=" w-[90%] flex justify-between h-fit bg-slate-200 rounded-r-xl overflow-hidden">
                         <div className="w-full py-2 px-4">
-                            <h2 className="ml-[50%] font-semibold">MESA {props.mesa}</h2>
+                            <h2 className="ml-[50%] font-semibold">MESA {props.mesa < 10 && props.mesa > 0 ? '0'+props.mesa: props.mesa}</h2>
                             <h2>PRATO: {props.name}</h2>
                             <p>OBS: {props.obs}</p>
                         </div>
@@ -48,8 +53,8 @@ export function CardGarcomPagamentoSolo(props: propsCard){
                                     >
                                     Cancelar
                                     </button>
-                                    <button
-                                    className="bg-green-700 w-fit active:bg-green-500 px-3 py-2 rounded-md text-lg font-semibold"
+                                    <button className="bg-green-700 w-fit active:bg-green-500 px-3 py-2 rounded-md text-lg font-semibold"
+                                    onClick={confirmarPedido}
                                     >
                                         Confirmar
                                     </button>

@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {WarningCircle} from 'phosphor-react'
-import axios from 'axios';
 import ReactModal from "react-modal";
+import api from "../services/Api";
 
 interface propsCardCozinha{
     mesa : number;
     prato : string;
-    desc : string;
     obs : string;
     id : number;
 }
@@ -19,13 +18,12 @@ export function CardCozinha(props:propsCardCozinha){
     const click = name == ' ' ? " " : 'bg-red-500'
 
     async function submitPrato () {
-        const response = await axios.put(`http://localhost:3333/updateCozinha/${props.id}`)
-        history.go(0)
+        api.put(`/updateCozinha/${props.id}`)
         setName('Peido finalizado')
     }
 
     return(
-        <div className="w-96 h-fit overflow-hidden bg-white">
+        <div className="w-96 h-fit overflow-hidden bg-white rounded-lg">
             <div className="pb-2">
                 <div className="w-full flex justify-center py-1">
                     <h1 className="font-semibold text-lg mt-2"> 
@@ -33,20 +31,23 @@ export function CardCozinha(props:propsCardCozinha){
                     </h1>
                 </div>
                 <div className="p-2 gap-2 flex flex-col">
-                    <p className="w-full p-1 flex gap-1">
-                        <p className="font-bold">Pedido:</p> {props.prato}
+                    <p className="w-full h-fit p-1 flex items-center gap-1 bg-gray-800 text-white rounded-md">
+                        Pedido: 
+                        <p className="text-red-500 font-bold uppercase">
+                            {props.prato}
+                        </p>
                     </p>
-                    <p className="m-auto">Descrição</p>
-                    <p className="w-full text-center break-keep">
-                        {props.desc}
+                    <p className="w-full p-1 flex flex-col gap-1 bg-gray-800 text-white rounded-md items-center">
+                        <p>
+                            Observação
+                        </p>
+                        <p className="font-semibold uppercase text-red-500 h-20 p-1">
+                            {props.obs}
+                        </p>
                     </p>
                 </div>
-                <div className="flex flex-col items-center py-1 px-5">
-                    <h2> Observação: {props.obs}</h2>
-                    <p className="w-full flex justify-center"> 
-                        
-                    </p>
-                </div>
+
+                
                 <div className="flex justify-center items-center py-1">
                     <button className={`${click} border-2 p-2 rounded-md marker:border-gray-600`}
                     onClick={() => {setIsOpen(true)}}

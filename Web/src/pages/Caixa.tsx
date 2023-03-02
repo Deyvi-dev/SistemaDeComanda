@@ -19,27 +19,30 @@ export function Caixa(){
     const [ caixa , setCaixa ] = useState<dados[]>([])
     const [ mesas , setMesas ] = useState<dados[]>([])
 
-    useEffect(() => {
-        api
+    useState(() => {
+        const temp = setInterval(() => {
+            api
             .get<dados[]>("/pedidos-no-bar")
             .then((response) => setBar(response.data));
 
-        api
-            .get<dados[]>("/pedidos-na-cozinha")
-            .then((response) => setCozinha(response.data));
+            api
+                .get<dados[]>("/pedidos-na-cozinha")
+                .then((response) => setCozinha(response.data));
 
-        api
-            .get<dados[]>("/pronto-para-entrega")
-            .then((response) => setPronto(response.data));
+            api
+                .get<dados[]>("/pronto-para-entrega")
+                .then((response) => setPronto(response.data));
 
-        api
-            .get<dados[]>("/pedidos-no-caixa")
-            .then((response) => setCaixa(response.data));
+            api
+                .get<dados[]>("/pedidos-no-caixa")
+                .then((response) => setCaixa(response.data));
 
-        api
-            .get<dados[]>("/mesas")
-            .then((response) => setMesas(response.data));
-    }, [])
+            api
+                .get<dados[]>("/mesas")
+                .then((response) => setMesas(response.data));
+        },10)
+        return () => clearInterval(temp)
+    })
 
 
     return(

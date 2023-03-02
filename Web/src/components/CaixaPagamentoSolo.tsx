@@ -14,9 +14,9 @@ interface CPS{
 export default function CaixaPagamentoSolo(props: CPS){
   
     const [open,setOpen] = useState(false)
+    
     async function pagamentoRealizado() {
         const efetuandoPagamento = await api.put(`/pagamento-solo/${props.id}`)
-        history.go(0)
     }
     return (
         <div>

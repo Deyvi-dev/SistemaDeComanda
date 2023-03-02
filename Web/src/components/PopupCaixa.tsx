@@ -23,16 +23,17 @@ export function PopupCaixa(props:propsPopupCaixa){
     const [openModalMesa, setOpenModalMesa] = useState(false)
 
     useEffect(() => {
-        api
+        const intervalo = setInterval(() => {
+            api
             .get<dados[]>(`mesa/${props.mesa}`)
             .then((response) => setDados(response.data))
-
+        },100);
+        return () => clearInterval(intervalo)
       }, []);
 
 
       async function mesaPaga (){
         const response = await api.put(`/mesaPaga/${props.mesa}`)
-        history.go(0)
       }
 
 

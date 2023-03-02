@@ -49,7 +49,7 @@ export function CardCaixa(props:propsCaixa){
             >
                 <div className="h-[10%] flex justify-center w-full items-center">
                     <h1 className="font-bold text-xl">
-                        MESA {props.mesa}
+                        MESA {props.mesa }
                     </h1>
                     <div className="absolute w-full  flex justify-end">
                         <button 
