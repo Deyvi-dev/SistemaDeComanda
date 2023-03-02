@@ -60,7 +60,7 @@ export function Garcom(){
             setErro(false)  
 
         }
-        setErro(true)
+        setOpen(false)
     }
 
     var test = 0
